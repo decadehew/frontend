@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+    margin: 0;
+    background-color: #afb9d038;
+}
+
+.player-score {
+    color: rgb(73, 150, 73);
+}
+
+.choose-gender {
+    margin-left: 20px;
+}
