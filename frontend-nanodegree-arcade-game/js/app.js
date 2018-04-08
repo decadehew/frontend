@@ -8,7 +8,7 @@ let score = 0;
 var Character = function(sprite, x, y) {
     this.sprite = sprite;
     this.x = x;
-    this.y =y;
+    this.y = y;
 }
 
 // Enemies our player must avoid
@@ -121,12 +121,12 @@ chooseGender.addEventListener('change', function(e) {
         default:
             break;
     }
-})
+});
 chooseGender.addEventListener('keypress', function(e) {
     if(e.keyCode == 13) {
         this.blur();
     }
-})
+});
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
