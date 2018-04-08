@@ -1,6 +1,16 @@
+"use strict";
+
 const playerScore = document.querySelector('.player-score');
 const chooseGender = document.querySelector('.choose-gender');
 let score = 0;
+
+// Character Object
+var Character = function(sprite, x, y) {
+    this.sprite = sprite;
+    this.x = x;
+    this.y =y;
+}
+
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -8,12 +18,21 @@ var Enemy = function(x, y) {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.x = x;
-    this.y = y;
     this.speed = Math.floor(Math.random() * 100) + 100; 
-    this.sprite = 'images/enemy-bug.png';
+    Character.call(this, 'images/enemy-bug.png', x, y);
 };
 
+// check Collisions
+Enemy.prototype.checkCollisions = function() {
+    if(this.x < player.x + 60 && 
+        this.x + 60 > player.x && 
+        this.y < player.y + 60 && 
+        this.y + 60 > player.y) {
+		score = 0;
+        playerScore.textContent = score;
+		player.reset();
+    }
+}
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -23,15 +42,7 @@ Enemy.prototype.update = function(dt) {
     if(this.x < 505) this.x += this.speed * dt;
     else this.x = -90;
 
-    if(this.x < player.x + 60 && 
-        this.x + 60 > player.x && 
-        this.y < player.y + 60 && 
-        this.y + 60 > player.y) {
-		score = 0;
-        playerScore.textContent = score;
-		player.reset();
-    }
-
+    this.checkCollisions();
 };
 
 // Draw the enemy on the screen, required method for game
@@ -42,9 +53,7 @@ Enemy.prototype.render = function() {
 
 // Now write your own player class
 var Player = function() {
-    this.sprite = "images/char-boy.png";
-    this.x = 200;
-    this.y = 400;
+    Character.call(this, 'images/char-boy.png', 200, 400);
 }
 
 // This class requires an update(), render() and
@@ -73,6 +82,7 @@ Player.prototype.handleInput = function(way) {
         this.y += 90;
     }
 }
+
 Player.prototype.reset = function() {
     this.x = 200;
     this.y = 400;
@@ -94,8 +104,7 @@ const player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('change', function(e) {
-    const g = e.target.value;
+chooseGender.addEventListener('change', function(e) {
     switch(g) {
         case "boy": 
             player.sprite = "images/char-boy.png";
@@ -113,12 +122,18 @@ document.addEventListener('change', function(e) {
             break;
     }
 })
+chooseGender.addEventListener('keypress', function(e) {
+    if(e.keyCode == 13) {
+        this.blur();
+    }
+})
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
-        40: 'down'
+        40: 'down',
+        13: 'enter'
     };
     player.handleInput(allowedKeys[e.keyCode]);
 });

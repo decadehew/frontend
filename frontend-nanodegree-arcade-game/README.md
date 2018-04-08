@@ -4,6 +4,7 @@
 
 * [Instructions](#instructions)
 * [How The Game Works](#HowTo)
+* [Running Game locally](#locally)
 
 ## Instructions
 
@@ -15,4 +16,12 @@ In this game you have a Player and Enemies (Bugs). The goal of the player is to 
 - You can implement a score for the game. For example, the score can increase each time the player reaches the water, and it can be reset to 0 when collision occurs
 - [Demo](http://decadehew.github.io/frontend/frontend-nanodegree-arcade-game/)
 
+## Running Game locally
+
+Run these commands to set up the Arcade Game
+
+> https://github.com/decadehew/frontend.git
+> cd frontend-nanodegree-arcade-game
+> run index.html
+> 
 
