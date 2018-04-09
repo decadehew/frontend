@@ -105,6 +105,7 @@ const player = new Player();
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 chooseGender.addEventListener('change', function(e) {
+    const g = e.target.value;
     switch(g) {
         case "boy": 
             player.sprite = "images/char-boy.png";
@@ -121,11 +122,7 @@ chooseGender.addEventListener('change', function(e) {
         default:
             break;
     }
-});
-chooseGender.addEventListener('keypress', function(e) {
-    if(e.keyCode == 13) {
-        this.blur();
-    }
+    this.blur();
 });
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {

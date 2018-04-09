@@ -20,6 +20,6 @@ In this game you have a Player and Enemies (Bugs). The goal of the player is to 
 
 Run these commands to set up the Arcade Game
 
-- https://github.com/decadehew/frontend.git
+- git clone https://github.com/decadehew/frontend.git
 - cd frontend-nanodegree-arcade-game
 - run index.html
