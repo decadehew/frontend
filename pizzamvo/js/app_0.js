@@ -73,4 +73,5 @@ $(function() {
     };
 
     octopus.init();
+    window.a = view.pizzaTemplate
 }());
