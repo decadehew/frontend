@@ -72,9 +72,9 @@ $(function() {
          it('the menu changes visibility when the menu icon is clicked', function() {
             const body = $('body');
             const menuIcon = $('.menu-icon-link');
-            menuIcon.trigger('click');
+            menuIcon.click();
             expect(body.hasClass('menu-hidden')).toBe(false);
-            menuIcon.trigger('click');
+            menuIcon.click();
             expect(body.hasClass('menu-hidden')).toBe(true);
          });
     });
@@ -90,7 +90,7 @@ $(function() {
             loadFeed(0, done);
         });
         it('there is at least a single .entry element within the .feed container', function() {
-            const entry = $('.entry');
+            const entry = $('.feed .entry');
             expect(entry).toBeDefined();
             expect(entry.length).toBeGreaterThan(0);
         });
