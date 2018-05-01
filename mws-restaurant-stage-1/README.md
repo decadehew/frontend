@@ -39,5 +39,3 @@ Most of the code in this project has been written to the ES6 JavaScript specific
 - cd mws-restaurant-stage-1
 - (commad) browser-sync start --server --files "*.html, css/*.css, js/*.js"
 - localhost:3000
-- [Demo](https://decadehew.github.io/frontend/mws-restaurant-stage-1/)
-
