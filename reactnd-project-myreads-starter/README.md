@@ -89,6 +89,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 **Run these commands to set up the project:**
 
-git clone https://github.com/decadehew/frontend.git
-cd reactnd-project-myreads-starter
-npm install
+* git clone https://github.com/decadehew/frontend.git
+* cd reactnd-project-myreads-starter
+* npm install
