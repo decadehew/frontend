@@ -27,6 +27,7 @@ class BooksApp extends Component {
   updateShelf = (book, shelf) => {
 		BooksAPI.update(book, shelf).then((data) => {
       book.shelf = shelf;
+      console.log(book)
       this.setState((state) => ({
         books: state.books.filter((item) => item.id !== book.id).concat( [book] )
       }));

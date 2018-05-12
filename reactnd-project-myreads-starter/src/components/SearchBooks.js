@@ -20,27 +20,32 @@ class SearchBooks extends Component {
         this.setState({
             query: query
         });
-        if(query.length === 0) this.clearQuery();
-        BooksAPI.search(query).then((sBooks) => {
-            if(sBooks.error) {
-                this.clearQuery();
-            } else {
-                sBooks.map((searchBook) => {
-                    books.find((book) => {
-                        if(book.id === searchBook.id) {
-                            searchBook.shelf = book.shelf;
-                        } else {
-                            searchBook.shelf = 'none';
-                        }
-                        return searchBook.id === book.id
+        if(query.length === 0) {
+            this.clearQuery(); 
+        } else {
+            BooksAPI.search(query).then((sBooks) => {
+                if(sBooks.error) {
+                    this.clearQuery();
+                } else {
+                    sBooks.map((searchBook) => {
+                        books.find((book) => {
+                            if(book.id === searchBook.id) {
+                                searchBook.shelf = book.shelf;
+                            } else {
+                                searchBook.shelf = 'none';
+                            }
+                            return searchBook.id === book.id
+                        })
+                        return searchBook; //search array
                     })
-                    return searchBook; //search array
-                })
-                this.setState({
-                    displayBooks: sBooks
-                })
-            }
-        })
+                    this.setState({
+                        displayBooks: sBooks
+                    })
+                }
+            })
+        }
+
+        
     }
 
     clearQuery = () => {
