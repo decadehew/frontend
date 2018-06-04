@@ -18,7 +18,7 @@ class App extends Component {
 				{ title: 'Park Lane by CMP', location: { lat: 24.15154, lng: 120.663891 } }				]
 		}
 		this.initMap = this.initMap.bind(this);
-		// this.getMarkerInfo = this.getMarkerInfo(this);
+		// this.getMarkerInfo = this.getMarker.bind(this);
 		// this.openInfoWindow = this.openInfoWindow(this);
 	}
 	componentDidMount() {
@@ -45,25 +45,27 @@ class App extends Component {
 
 	getMarker = (map, bounds) => {
 		const self = this;
+		const markers = this.state.markers;
 		this.state.locations.map((loc) => {
 			const marker = new window.google.maps.Marker({
                 position: loc.location,
                 map: map,
 				title: loc.title,
 				animation: window.google.maps.Animation.DROP,
-				// icon: defaultIcon,
 			});
 
 			marker.addListener('click', function() {
-				// console.log(self.state.infowindow);
 				self.openInfoWindow(marker, self.state.infowindow);
 			})
 			bounds.extend(marker.position);
-			
-			self.setState((state) => {
-				markers: state.markers.push(marker)
+			markers.push(marker);
+			this.setState({
+				markers: markers
 			})
+			
+			
 		})
+		
 		map.fitBounds(bounds);
 
 	}
@@ -92,7 +94,6 @@ class App extends Component {
 				this.state.infowindow.setContent("Can't load data!!!")
 			}
 			res.json().then((data) => {
-				console.log(data)
 				const place = data.response.venues[0];
 
 				const info = `
@@ -111,6 +112,7 @@ class App extends Component {
 
 
 	render() {
+		// console.log(this.state.markers)
 		return (
 			<div className="">
 				<Sidebar

@@ -5,13 +5,13 @@ class Sidebar extends Component {
         super(props);
         this.state = {
             query: '',
-            filterMakers: []
+            filterMarkers: []
         }
     }
 
     componentDidMount() {
         this.setState({
-            filterMakers: this.props.markers
+            filterMarkers: this.props.markers
         })
     }
 
@@ -31,16 +31,15 @@ class Sidebar extends Component {
             } else marker.setVisible(false);
         })
         this.setState({
-            filterMakers: filterMarkers
+            filterMarkers: filterMarkers
         })
 
     }
     
     render() {
         const { locations, markers, openInfoWindow, infowindow } = this.props;
-        const { filterMakers } = this.state;
-        console.log(markers)
-        console.log(locations)
+        const { filterMarkers } = this.state;
+
         return (
             <div className="options-box">
                 <h1>Find Taichung City</h1>
@@ -60,13 +59,13 @@ class Sidebar extends Component {
                         Taichung
                     </p>
                     <ul className="menu-list">
-                        {filterMakers && filterMakers.length && filterMakers.map((loc, i) => (
+                        {filterMarkers.length !== 0 && filterMarkers.map((marker, i) => (
                             <li key={i+1}>
                                 <a 
                                     tabIndex="0"
                                     role="button"
-                                    onClick={ () => openInfoWindow(markers[i], infowindow) }
-                                >{loc.title}</a>
+                                    onClick={ openInfoWindow.bind(this, marker, infowindow) }
+                                >{marker.title}</a>
                             </li>
                         ))}
                     </ul>
