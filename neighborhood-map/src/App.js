@@ -15,7 +15,9 @@ class App extends Component {
 				{ title: 'Tunghai University', location: { lat: 24.179819, lng: 120.604503 } },
 				{ title: 'Taichung Train Station', location: { lat: 24.137448, lng: 120.684214 } },
 				{ title: 'Yizhong Street Night Market', location: { lat: 24.150782, lng: 120.685551 } },
-				{ title: 'Park Lane by CMP', location: { lat: 24.15154, lng: 120.663891 } }				]
+				{ title: 'Park Lane by CMP', location: { lat: 24.15154, lng: 120.663891 } }				
+			],
+			isActive: false
 		}
 		this.initMap = this.initMap.bind(this);
 		// this.getMarkerInfo = this.getMarker.bind(this);
@@ -110,18 +112,47 @@ class App extends Component {
 		})
 	}
 
-
+	onActive = () => {
+		this.setState({
+			isActive: !this.state.isActive
+		})
+	}
 	render() {
-		// console.log(this.state.markers)
+		const active = this.state.isActive ? 'is-active' : '';
 		return (
 			<div className="">
-				<Sidebar
-					locations={this.state.locations} 
-					markers={this.state.markers}
-					infowindow={this.state.infowindow}
-					openInfoWindow={this.openInfoWindow}
-				/>
-				<div id="map"></div>
+				<nav class="navbar" role="navigation" aria-label="main navigation">
+					<div class="navbar-brand">
+						<a class="navbar-item" href="https://bulma.io">
+							<img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
+						</a>
+
+						<a role="button" class={`navbar-burger  ${active} `} aria-label="menu" aria-expanded="false"
+							onClick={(e) => this.onActive() }
+						>
+							<span aria-hidden="true"></span>
+							<span aria-hidden="true"></span>
+							<span aria-hidden="true"></span>
+						</a>
+					</div>
+					<div class={`navbar-menu ${active}`}>
+						<Sidebar
+							locations={this.state.locations} 
+							markers={this.state.markers}
+							infowindow={this.state.infowindow}
+							openInfoWindow={this.openInfoWindow}
+						/>
+					</div>
+				</nav>
+				<div className="columns is-mobile">
+					<Sidebar
+						locations={this.state.locations} 
+						markers={this.state.markers}
+						infowindow={this.state.infowindow}
+						openInfoWindow={this.openInfoWindow}
+					/>
+					<div id="map" className="column is-8"></div>
+				</div>
 			</div>
 		);
 	}

@@ -41,7 +41,7 @@ class Sidebar extends Component {
         const { filterMarkers } = this.state;
 
         return (
-            <div className="options-box">
+            <div className="column is-4 sidebar">
                 <h1>Find Taichung City</h1>
                 <aside className="menu">
                     <p>
