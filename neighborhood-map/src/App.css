@@ -15,7 +15,7 @@ input {
 
 h1 {
   color: #525454;
-  font-size: 22px;
+  font-size: 20px;
   margin: 0 0 10px 0;
   text-align: center;
 }
@@ -38,6 +38,20 @@ h1 {
   font-size: 12px;
 }
 
+.navbar-menu {
+  display: none;
+  padding: 0;
+}
+
+.menu {
+  margin-left: 20px;
+}
+
+.navbar-item img {
+  max-height: 3.75rem;
+  margin-left: 30px;
+}
+
 @media screen and (max-width: 500px) {
   .options-box {
     display: none;
@@ -46,8 +60,15 @@ h1 {
     width: 100%;
     left: 0;
   }
+  .navbar-item img {
+    max-height: 2.75rem;
+    margin-left: 0;
+  }
 }
 @media screen and (max-width: 1088px) {
+  .navbar-menu .sidebar {
+    display: block;
+  }
   .sidebar {
     display: none;
   }
@@ -55,11 +76,8 @@ h1 {
     width: 100%;
     left: 0;
   }
-}
-.navbar-menu {
-  display: none;
-}
-
-.menu {
-  margin-left: 20px;
+  .navbar-item img {
+    max-height: 2.75rem;
+    margin-left: 0;
+  }
 }

@@ -37,7 +37,7 @@ class Sidebar extends Component {
     }
     
     render() {
-        const { locations, markers, openInfoWindow, infowindow } = this.props;
+        const { openInfoWindow, infowindow } = this.props;
         const { filterMarkers } = this.state;
 
         return (
@@ -65,6 +65,7 @@ class Sidebar extends Component {
                                     tabIndex="0"
                                     role="button"
                                     onClick={ openInfoWindow.bind(this, marker, infowindow) }
+                                    onKeyPress={ openInfoWindow.bind(this, marker, infowindow) }
                                 >{marker.title}</a>
                             </li>
                         ))}

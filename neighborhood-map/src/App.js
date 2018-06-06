@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
+import Nav from './components/Nav';
 
 class App extends Component {
 	constructor(props) {
@@ -20,15 +21,12 @@ class App extends Component {
 			isActive: false
 		}
 		this.initMap = this.initMap.bind(this);
-		// this.getMarkerInfo = this.getMarker.bind(this);
-		// this.openInfoWindow = this.openInfoWindow(this);
 	}
 	componentDidMount() {
 		window.initMap = this.initMap;
 		loadMap("https://maps.googleapis.com/maps/api/js?key=AIzaSyCjPG2DQlveUQKSCoADJpItCKGGNsT6zrw&libraries=geometry&v=3&callback=initMap")
 	}
 	initMap = () => {
-		const self = this;
 		const map = new window.google.maps.Map(document.getElementById('map'), {
 			center: { lat: 24.182292, lng: 120.584257 },
 			zoom: 13,
@@ -121,29 +119,14 @@ class App extends Component {
 		const active = this.state.isActive ? 'is-active' : '';
 		return (
 			<div className="">
-				<nav class="navbar" role="navigation" aria-label="main navigation">
-					<div class="navbar-brand">
-						<a class="navbar-item" href="https://bulma.io">
-							<img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
-						</a>
-
-						<a role="button" class={`navbar-burger  ${active} `} aria-label="menu" aria-expanded="false"
-							onClick={(e) => this.onActive() }
-						>
-							<span aria-hidden="true"></span>
-							<span aria-hidden="true"></span>
-							<span aria-hidden="true"></span>
-						</a>
-					</div>
-					<div class={`navbar-menu ${active}`}>
-						<Sidebar
-							locations={this.state.locations} 
-							markers={this.state.markers}
-							infowindow={this.state.infowindow}
-							openInfoWindow={this.openInfoWindow}
-						/>
-					</div>
-				</nav>
+				<Nav 
+					active={active}
+					onActive={this.onActive}
+					locations={this.state.locations} 
+					markers={this.state.markers}
+					infowindow={this.state.infowindow}
+					openInfoWindow={this.openInfoWindow}
+				/>
 				<div className="columns is-mobile">
 					<Sidebar
 						locations={this.state.locations} 
